@@ -1,0 +1,22 @@
+12
+320
+240
+200
+0
+1
+1
+32000
+32000
+2
+
+#framerate
+#desiredwidth
+#desiredheight
+#vidoebitrate
+#cabacflag
+#h264Profile
+#refframes
+#audio sampling rate
+#audio bitrate
+#aac profile
+

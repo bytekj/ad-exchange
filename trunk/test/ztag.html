@@ -1,0 +1,115 @@
+<html>
+<head>
+	<script src="jwplayer.js"></script>
+</head>
+<body>
+	<div id="container" style="margin-left: auto; margin-right: auto;"></div>
+	<script type="text/javascript">
+	var id=0;
+	var resp = 0;
+	function getad(channel){
+		var XHR = new XMLHttpRequest();
+		//var ip = 
+		url = 'zgetad.php?filename='+channel;
+		XHR.onreadystatechange= function() {
+			if (this.readyState !== 4) return; 
+			else if (this.status == 200) { 
+				//console.log(this.responseText);
+				jw(this.responseText);
+			} 
+		};
+
+		XHR.open("GET", url, true);
+		XHR.send();
+	}
+
+	function log(id){
+		var XHR = new XMLHttpRequest();
+		//var ip = 
+		url = 'zlog.php?id='+id;
+		XHR.onreadystatechange= function() {
+			if (this.readyState !== 4) return; 
+			else if (this.status == 200) { 
+				//console.log(this.responseText);
+			} 
+		};
+
+		XHR.open("GET", url, true);
+		XHR.send();
+	}
+
+	function jw(json){
+		ejson = eval('('+json+')');
+		//console.log(ejson);
+		if(ejson.c == 0){
+			jwplayer('container').setup({
+				"flashplayer": "player.swf",
+				"playlist": 
+				[	
+				{ 
+					'file':'zenga1juneclustermtv150.sdp',
+					'streamer':'rtmp://23.21.155.146/zengalive/',
+					'rtmp.subscribe':'true',
+					'bufferlength': 0
+				}],
+
+				'repeat': 'list'
+			});			
+		}
+		else{
+
+			file = ejson.ads[0].f;
+
+			jwplayer('container').setup({
+				"flashplayer": "player.swf",
+				"playlist": 
+				[	
+				{
+					"file": "http://54.243.237.61/adex/resource/ads/encoded/"+file,
+					"title": "The first video",
+					"type": "video"
+				},
+				{ 
+					'file':'zenga1juneclustermtv150.sdp',
+					'streamer':'rtmp://23.21.155.146/zengalive/',
+					'rtmp.subscribe':'true',
+					'bufferlength': 0
+				}],
+
+				'repeat': 'list'
+			});
+			log(ejson.ads[0].id);
+		}
+	}
+	/*http://track.adform.net/serving/videoad/?bn=453599&ord=__random-number__ */
+	/*
+	jwplayer('container').setup({
+		"flashplayer": "player.swf",
+				"playlist": 
+		[	
+		{
+			"file": "http://54.243.237.61/adex/resource/ads/encoded/b1933b",
+			"title": "The first video",
+			"type": "video"
+		},
+		{ 
+			'file':'zenga1juneclustermtv150.sdp',
+			'streamer':'rtmp://23.21.155.146/zengalive/',
+			'rtmp.subscribe':'true',
+			'bufferlength': 0
+		}],
+
+		'repeat': 'list'
+	});
+	
+	jwplayer('ova-jwplayer-container').onPlaylistItem(function(){
+		i++;
+		console.log('playing '+i+'th file');
+	}) 
+*/
+
+getad('mtv150.sdp');
+</script>
+
+</body>
+</html>

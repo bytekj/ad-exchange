@@ -1,0 +1,40 @@
+<html>
+<head>
+	<script src="jwplayer.js"></script>
+</head>
+<body>
+	<div id="ova-jwplayer-container" style="margin-left: auto; margin-right: auto;"></div>
+	<script type="text/javascript">
+	/*http://track.adform.net/serving/videoad/?bn=453599&ord=__random-number__ */
+	
+	jwplayer('ova-jwplayer-container').setup({
+		"flashplayer": "player.swf",
+		"file": "http://streaming.openvideoads.org:81/shows/the-black-hole.mp4",
+		"width": 450,
+		"height": 300,
+		"controlbar": {"position": "bottom"},
+		"plugins": {"ova-jw.swf": 
+		{
+			"canFireEventAPICalls": true,
+			"ads": {"schedule": 
+			[{	"position": "pre-roll",	"tag": "http://46.137.222.170/adex/test/playad.php?bn=453599&ord=__random-number__"}]},
+			"debug": {"levels": "fatal,  http_calls, tracking_events, tracking_table"}}
+		}
+	}); 
+
+function ovaPrintDebug(output) {
+	try {
+		console.log(output);
+	}
+	catch(error) {}
+}
+function onTrackingEvent(event) {
+	if(event != null) {
+		ovaPrintDebug('kiran:'+event);
+			//$("#ova-tracking-" + event.eventType).css("background", "#9ACD32");
+		}
+	}
+	</script>
+
+</body>
+</html>

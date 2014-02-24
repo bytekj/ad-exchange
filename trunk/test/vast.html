@@ -1,0 +1,21 @@
+<html>
+<head>
+	<script src="../js/jwplayer.js"></script>
+	<script src="ova-jw.js"></script>
+</head>
+<body>
+	<div id="ova-jwplayer-container" style="margin-left: auto; margin-right: auto;"></div>
+	<script type="text/javascript">
+	jwplayer('ova-jwplayer-container').setup({
+		"flashplayer": "../js/player.swf",
+		"file": "rtmp://23.21.155.146/zengalive/zenga1juneclustermtv50.sdp",
+		"width": 450,
+		"height": 300,
+		"controlbar": {"position": "bottom"},
+		"plugins": {"ova-jw.swf": {"ads": {"schedule": 
+		[{	"position": "pre-roll",	"tag": "http://46.137.222.170/adex/test/playad.php?bn=453599&ord=__random-number__"}]},
+		"debug": {"levels": "fatal, config, vast_template, vpaid"}}}});
+	</script>
+
+</body>
+</html>
